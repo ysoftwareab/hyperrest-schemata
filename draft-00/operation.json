@@ -1,0 +1,93 @@
+{
+    "$schema": "core.json#",
+    "id": "http://schema.hyperrest.com/draft-00/operation.json#",
+    "allOf": [{
+        "$ref": "core.json#"
+    }],
+
+    "title": "HyperREST operation schema",
+
+    "type": "object",
+    "properties": {
+        "exposedSchema": {
+            "title": "Exposed schemata",
+            "type": "object",
+            "properties": {
+                "accepted": {
+                    "type": "array",
+                    "additionalItems": {
+                        "$ref": "representation.json#"
+                    }
+                },
+                "error": {
+                    "$ref": "#/properties/exposedSchema/properties/accepted"
+                },
+                "patch": {
+                    "$ref": "#/properties/exposedSchema/properties/accepted"
+                },
+                "provided": {
+                    "$ref": "#/properties/exposedSchema/properties/accepted"
+                }
+            }
+        },
+
+        "method": {
+            "title": "Method",
+            "description": "HTTP method",
+            "type": "string",
+            "default": "GET"
+        },
+
+        "parameters": {
+            "title": "Parameters",
+            "description": "Definitions for possible query parameters",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "core.json#"
+            },
+            "default": {}
+        },
+
+        "headers": {
+            "title": "Headers",
+            "description": "List of HTTP headers relevant to the defined operation",
+            "type": "array",
+            "additionalItems": {
+                "$ref": "operation-header.json#"
+            }
+        },
+
+        "schema": {
+            "inherits": [{
+                "$ref": "#/properties/exposedSchema/additionalProperties"
+            }],
+            "title": "Request schemata",
+            "description": "Schemata that define possible request representation(s)"
+        },
+
+        "response": {
+            "inherits": [{
+                "$ref": "operation-response.json#"
+            }],
+            "title": "Response",
+            "description": "Expected response for a successful operation"
+        },
+
+        "responses": {
+            "title": "Error Responses",
+            "description": "List of responses that this operation can possibly lead to",
+            "type": "array",
+            "additionalItems": {
+                "$ref": "operation-response.json#"
+            }
+        }
+    },
+    "inheritsMergesArrayProperties": [
+        "parameters",
+        "responses"
+    ],
+    "required": [
+        "method",
+        "response"
+    ]
+}

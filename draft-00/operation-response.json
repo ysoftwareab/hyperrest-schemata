@@ -1,0 +1,62 @@
+{
+    "$schema": "core.json#",
+    "id": "http://schema.hyperrest.com/draft-00/operation-response.json#",
+    "allOf": [{
+        "$ref": "core.json#"
+    }],
+
+    "title": "HyperREST operation response schema",
+
+    "type": "object",
+    "properties": {
+        "httpStatusCode": {
+            "title": "HTTP status code",
+            "description": "Response's HTTP status code",
+            "type": "integer",
+            "minimum": 100,
+            "maximum": 599
+        },
+
+        "httpStatusMessage": {
+            "title": "HTTP status message",
+            "description": "Message associated with the response's HTTP status code",
+            "type": "string"
+        },
+
+        "subHttpCodes": {
+            "title": "Sub HTTP codes",
+            "description": "Codes that will be used as keys for i18n messages",
+            "type": "array",
+            "additionalItems": {
+                "type": "string",
+                "pattern": "[a-z\\._]+"
+            },
+            "comments": [
+                "These codes have to be more granular than the httpStatusCode",
+                "Unless more granular, this property should not be defined"
+            ]
+        },
+
+        "headers": {
+            "title": "Headers",
+            "description": "List of HTTP headers relevant to the defined response",
+            "type": "array",
+            "additionalItems": {
+                "$ref": "operation-header.json#"
+            }
+        },
+
+        "targetSchema": {
+            "title": "Target schemata",
+            "description": "Schemata that defines possible response representation(s)",
+            "type": "array",
+            "additionalItems": {
+                "$ref": "representation.json#"
+            }
+        }
+    },
+    "required": [
+        "httpStatusCode",
+        "httpStatusMessage"
+    ]
+}

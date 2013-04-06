@@ -1,0 +1,59 @@
+{
+    "$schema": "core.json#",
+    "id": "http://schema.hyperrest.com/draft-00/api-resource.json#",
+    "allOf": [{
+        "$ref": "core.json#"
+    }],
+
+    "title": "HyperREST API resource schema",
+
+    "type": "object",
+    "properties": {
+        "title": {
+            "title": "Title",
+            "type": "string",
+            "example": "Car collection"
+        },
+
+        "path": {
+            "title": "Path",
+            "description": "URI template, absolute or relative to API's basePath",
+            "type": "string",
+            "example": "cars"
+        },
+
+        "identifyingRels": {
+            "title": "Identifying relations",
+            "description": "Relations pointing to this resource",
+            "type": "array",
+            "additionalItems": {
+                "$ref": "rel.json#"
+            },
+            "minItems": 1,
+            "example": [{
+                "$ref": "some-custom-extension-relation.json#"
+            }]
+        },
+
+        "rels": {
+            "title": "Relations",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "rel.json#"
+            },
+            "example": {
+                "item": {
+                    "$ref": "definition-for-item-relation.json#"
+                },
+                "extension": {
+                    "$ref": "some-custom-extension-relation.json#"
+                }
+            }
+        }
+    },
+    "required": [
+        "title",
+        "path",
+        "identifyingRels"
+    ]
+}

@@ -1,0 +1,65 @@
+{
+    "$schema": "http://schema.hyperrest.com/draft-00/core.json#",
+    "id": "http://schema.hyperrest.com/draft-00/core.json#",
+    "allOf": [{
+        "$ref": "http://json-schema.org/draft-04/hyper-schema#"
+    }],
+
+    "title": "HyperREST Schema (extension of JSON Schema)",
+
+    "fragmentResolution": "json-pointer",
+
+    "type": "object",
+    "properties": {
+        "inherits": {
+            "title": "Inherits",
+            "description": "An array of schemata that should be used at compile-time as merging ancestors to the current schema",
+            "type": "array",
+            "additionalItems": {
+                "$ref": "#"
+            },
+            "example": [{
+                "$ref": "http://json-schema.org/draft-04/schema#"
+            }],
+            "comments": [
+                "Ancestor rules will be extended/overwritten by the rules of a schema with a higher index, and finally by the current schema"
+            ]
+        },
+
+        "inheritsMergesArrayProperties": {
+            "title": "Array properties to be merged",
+            "description": "Defines which properties of type array to merge when inheriting, instead of being overwritten",
+            "type": "array",
+            "additionalItems": {
+                "type": "string"
+            },
+            "default": [],
+            "example": [
+                "arrayProperty"
+            ]
+        },
+
+        "example": {
+            "title": "Example",
+            "description": "Metadata - one example of a valid instance of this schema",
+            "type": "any"
+        },
+
+        "comments": {
+            "title": "Comments",
+            "description": "Metadata",
+            "type": "array",
+            "additionalItems": {
+                "type": "string"
+            },
+            "example": [
+                "This is a comment",
+                "Just like this one"
+            ]
+        }
+    },
+    "inheritsMergesArrayProperties": [
+        "inheritsMergesArrayProperties",
+        "comments"
+    ]
+}

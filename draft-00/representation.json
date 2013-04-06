@@ -1,0 +1,9 @@
+{
+    "$schema": "core.json#",
+    "id": "http://schema.hyperrest.com/draft-00/representation.json#",
+    "allOf": [{
+        "$ref": "core.json#"
+    }],
+
+    "title": "HyperREST representation schema"
+}

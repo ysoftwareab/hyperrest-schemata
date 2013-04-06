@@ -1,0 +1,48 @@
+{
+    "$schema": "core.json#",
+    "id": "http://schema.hyperrest.com/draft-00/api.json#",
+    "allOf": [{
+        "$ref": "core.json#"
+    }],
+
+    "title": "HyperREST API schema",
+
+    "type": "object",
+    "properties": {
+        "host": {
+            "title": "Host",
+            "description": "Value for Host HTTP header",
+            "type": "string",
+            "example": "http://localhost"
+        },
+
+        "basePath": {
+            "title": "Base path",
+            "description": "Base path for the listed API resources' path",
+            "type": "string",
+            "default": "",
+            "example": "/path/{var}"
+        },
+
+        "entryPoint": {
+            "title": "Entry point",
+            "description": "Definition for the entry point resource",
+            "inherits": [{
+                "$ref": "api-resource.json#"
+            }],
+        },
+
+        "resources": {
+            "title": "Resources",
+            "description": "List of definitions for the API's resources",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "api-resource.json#"
+            }
+        }
+    },
+    "required": [
+        "host",
+        "entryPoint"
+    ]
+}

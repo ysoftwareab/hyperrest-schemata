@@ -1,0 +1,20 @@
+{
+    "$schema": "core.json#",
+    "id": "http://schema.hyperrest.com/draft-00/rel.json#",
+    "allOf": [{
+        "$ref": "core.json#"
+    }],
+
+    "title": "HyperREST rel schema",
+
+    "type": "object",
+    "properties": {
+        "operations": {
+            "description": "Operation schemata that the linked resource defines",
+            "type": "array",
+            "items": {
+                "$ref": "operation.json#"
+            }
+        }
+    }
+}
