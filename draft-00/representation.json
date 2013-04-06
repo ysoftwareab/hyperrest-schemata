@@ -5,5 +5,9 @@
         "$ref": "core.json#"
     }],
 
-    "title": "HyperREST representation schema"
+    "title": "HyperREST representation schema",
+
+    "required": [
+        "mediaType"
+    ]
 }
